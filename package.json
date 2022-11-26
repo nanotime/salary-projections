@@ -1,0 +1,31 @@
+{
+  "name": "salary-projections",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/my-element.es.js",
+  "exports": {
+    ".": "./dist/my-element.es.js"
+  },
+  "types": "types/my-element.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest --reporter verbose"
+  },
+  "dependencies": {
+    "hash-sum": "^2.0.0",
+    "lit": "^2.4.0"
+  },
+  "devDependencies": {
+    "@types/hash-sum": "^1.0.0",
+    "jsdom": "^20.0.2",
+    "typescript": "^4.6.4",
+    "vite": "^3.2.3",
+    "vitest": "^0.25.1"
+  }
+}
