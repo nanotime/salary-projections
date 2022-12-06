@@ -51,7 +51,7 @@ export class Card extends LitElement {
     :host {
       border: 1px solid black;
       min-height: 400px;
-      max-height: 400px;
+      max-height: 500px;
       display: flex;
       padding: 8px;
     }
