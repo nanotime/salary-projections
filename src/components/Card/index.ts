@@ -17,7 +17,7 @@ export class Card extends LitElement {
 
   render() {
     return html`
-      <section class="app-card">
+      <article class="app-card">
         <header class="app-card__header">
           <slot name="filters"></slot>
           <h2>${this.title}</h2>
@@ -34,7 +34,7 @@ export class Card extends LitElement {
             <span  class="chevron ${this.open ? '' : 'down'}"></span>
           </button>
         </div>
-      </section>
+      </article>
     `;
   }
 
@@ -54,6 +54,7 @@ export class Card extends LitElement {
       max-height: 500px;
       display: flex;
       padding: 8px;
+      scroll-snap-align: start;
     }
 
     .invisible {

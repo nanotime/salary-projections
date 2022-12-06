@@ -12,7 +12,16 @@ export class PeopleData extends LitElement {
 
   protected render(): unknown {
     return html`
-      <section class="people-data-cards">${this._buildCards()}</section>
+      <section class="container">
+        <div class="tabs">
+          <button class="tab persons-tab">Persons</button>
+          <button class="tab companies-tab">Companies</button>
+        </div>
+
+        <div class="cards">
+          ${this._buildCards()}
+        </div>
+      </section>
     `;
   }
 
@@ -48,12 +57,12 @@ export class PeopleData extends LitElement {
     });
 
     return html`
-      <app-line-chart
+      <app-chart
         chartId=${target.split(' ').join('-').toLowerCase()}
         data=${JSON.stringify(datasets.datasets)}
         labels=${labels}
         options=${chartOptions}
-      ></app-line-chart>
+      ></app-chart>
     `;
   }
 
@@ -77,10 +86,36 @@ export class PeopleData extends LitElement {
   }
 
   static styles = css`
-    .people-data-cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+    .container {
+      width: 100%;
+      height: 500px;
+    }
+    
+    .cards {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+    }
+
+    .tabs {
+      width: 100%;
+      display: flex;
+      justify-items: start;
       gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .tab {
+      border: 1px solid #000;
+      background-color: #fff;
+      padding: 12px;
+      cursor: pointer;
+    }
+
+    .tab:active, .tab:hover {
+      background-color: #ddd;
     }
   `;
 }

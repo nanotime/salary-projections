@@ -12,12 +12,19 @@ import {
   LineElement,
   PointElement,
   Tooltip,
+  BarElement,
+  BarController,
 } from 'chart.js';
 
-@customElement('app-line-chart')
-export class LineChart extends LitElement {
+type ChartType = 'bar' | 'line' | 'bubble' | 'doughnut' | 'pie' | 'polarArea' | 'radar' | 'scatter';
+
+@customElement('app-chart')
+export class AppChart extends LitElement {
   @property({ type: String })
   chartId: string | undefined = undefined;
+  
+  @property({ type: String })
+  chartType: ChartType = 'line';
   
   @property({ type: Object })
   labels = [];
@@ -40,6 +47,8 @@ export class LineChart extends LitElement {
       TimeSeriesScale,
       LineElement,
       PointElement,
+      BarElement,
+      BarController,
       Tooltip
     );
 
@@ -48,8 +57,10 @@ export class LineChart extends LitElement {
 
   protected firstUpdated(): void {
     const ctx = this.renderRoot.querySelector(`#${this.chartId}`) as HTMLCanvasElement;
+    
+    if (this.chartType === 'bar') console.log(this.labels)
     new Chart(ctx, {
-      type: 'line',
+      type: this.chartType,
       data: {
         labels: this.labels,
         datasets: this.data,
@@ -60,9 +71,8 @@ export class LineChart extends LitElement {
   }
 
   protected render(): unknown {
-
     return html`
-      <div class="line-chart">
+      <div>
         <canvas id="${this.chartId}"></canvas>
       </div>
     `
@@ -71,6 +81,6 @@ export class LineChart extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'app-line-chart': LineChart;
+    'app-chart': AppChart;
   }
 }
