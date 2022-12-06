@@ -47,8 +47,7 @@ export class LineChart extends LitElement {
   }
 
   protected firstUpdated(): void {
-   const ctx = this.renderRoot.querySelector(`#${this.chartId}`) as HTMLCanvasElement;
-
+    const ctx = this.renderRoot.querySelector(`#${this.chartId}`) as HTMLCanvasElement;
     new Chart(ctx, {
       type: 'line',
       data: {

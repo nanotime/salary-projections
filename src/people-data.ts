@@ -49,7 +49,7 @@ export class PeopleData extends LitElement {
 
     return html`
       <app-line-chart
-        chartId=${target}
+        chartId=${target.split(' ').join('-').toLowerCase()}
         data=${JSON.stringify(datasets.datasets)}
         labels=${labels}
         options=${chartOptions}
