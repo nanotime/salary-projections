@@ -36,7 +36,6 @@ export class PeopleAnalysis extends LitElement {
       },
     });
 
-    console.log(labels);
     if (!target) return html`<div>No target</div>`;
 
     return html`

@@ -51,14 +51,11 @@ export class AppChart extends LitElement {
       BarController,
       Tooltip
     );
-
-
   }
 
   protected firstUpdated(): void {
     const ctx = this.renderRoot.querySelector(`#${this.chartId}`) as HTMLCanvasElement;
     
-    if (this.chartType === 'bar') console.log(this.labels)
     new Chart(ctx, {
       type: this.chartType,
       data: {
@@ -67,7 +64,6 @@ export class AppChart extends LitElement {
       },
       options: this.options
     });
-
   }
 
   protected render(): unknown {
