@@ -10,22 +10,37 @@ export class PeopleData extends LitElement {
   @state()
   _peopleData = getData().persons_data;
 
+  @state()
+  _selectedTab = 'people';
+
   protected render(): unknown {
+    const tabs = [
+      { title: 'People', id: 'people' },
+      { title: 'Companies', id: 'companies' },
+    ];
+
+    const peopleCards = html`<div class="cards">${this._buildCards()}</div>`;
+    const compnaniesCards = html`<div class="cards">WIP</div>`;
+
     return html`
       <section class="container">
-        <div class="tabs">
-          <button class="tab persons-tab">Persons</button>
-          <button class="tab companies-tab">Companies</button>
-        </div>
+        <app-tabs
+          selected=${this._selectedTab}
+          tabs=${JSON.stringify(tabs)}
+          @tabclick=${this._setSelectedTab}
+        ></app-tabs>
 
-        <div class="cards">
-          ${this._buildCards()}
-        </div>
+        ${this._selectedTab === 'people' ? peopleCards : null}
+        ${this._selectedTab === 'companies' ? compnaniesCards : null}
       </section>
     `;
   }
 
-  private _getTableFormat(person: string) {
+  private _setSelectedTab(e: CustomEvent) {
+    this._selectedTab = e.detail.id;
+  }
+
+  private _setTableFormat(person: string) {
     const data = this._peopleData.get(person);
 
     return {
@@ -77,8 +92,9 @@ export class PeopleData extends LitElement {
       name => sum(name),
       name => html`
         <app-card title=${name}>
-          <app-table data=${JSON.stringify(this._getTableFormat(name))}>
-          </app-table>
+          <app-table
+            data=${JSON.stringify(this._setTableFormat(name))}
+          ></app-table>
           ${this._buildLineChart(name)}
         </app-card>
       `
@@ -90,32 +106,13 @@ export class PeopleData extends LitElement {
       width: 100%;
       height: 500px;
     }
-    
+
     .cards {
       display: flex;
       gap: 12px;
       width: 100%;
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
-    }
-
-    .tabs {
-      width: 100%;
-      display: flex;
-      justify-items: start;
-      gap: 4px;
-      margin-bottom: 4px;
-    }
-
-    .tab {
-      border: 1px solid #000;
-      background-color: #fff;
-      padding: 12px;
-      cursor: pointer;
-    }
-
-    .tab:active, .tab:hover {
-      background-color: #ddd;
     }
   `;
 }
