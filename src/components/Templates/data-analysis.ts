@@ -1,12 +1,12 @@
 import { LitElement, html, css, CSSResultGroup } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
-import { getData, tops } from './utils';
+import { getData, tops } from '../../utils';
 import { ChartData } from 'chart.js';
 import sum from 'hash-sum';
 
-@customElement('people-analysis')
-export class PeopleAnalysis extends LitElement {
+@customElement('data-analysis')
+export class DataAnalysis extends LitElement {
   @state()
   _cards: Array<{ title: string; key: string }> = [
     { title: 'Top 10% of earnings', key: 'top10percent' },
@@ -21,7 +21,7 @@ export class PeopleAnalysis extends LitElement {
     const data = this._topsData[target] || [];
     const labels = JSON.stringify(data.map(item => item.name));
     const chartItems = data.map(item => item.salary).sort((a,b) => b - a);
-    const datasets: ChartData<'line'> = {
+    const datasets: ChartData<'bar'> = {
       datasets: [
         {
           label: 'Persons',
@@ -78,6 +78,6 @@ export class PeopleAnalysis extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'people-analysis': PeopleAnalysis;
+    'data-analysis': DataAnalysis;
   }
 }

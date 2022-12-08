@@ -4,14 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Lit + TS</title>
+    <title>Salary Projections</title>
     <link rel="stylesheet" href="./src/index.css" />
-    <script type="module" src="/src/components/index.ts"></script>
-    <script type="module" src="/src/people-data.ts"></script>
-    <script type="module" src="/src/people-analysis.ts"></script>
+    <script type="module" src="/src/components/Atoms/index.ts"></script>
+    <script type="module" src="/src/components/Organisms/index.ts"></script>
+    <script type="module" src="/src/components/Templates/index.ts"></script>
   </head>
   <body>
-    <people-data></people-data>
-    <people-analysis></people-analysis>
+    <main>
+      <data-cards></data-cards>
+      <data-analysis></data-analysis>
+    </main>
   </body>
 </html>

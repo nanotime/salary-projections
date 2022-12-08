@@ -1,3 +1,4 @@
+
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import {
@@ -22,10 +23,10 @@ type ChartType = 'bar' | 'line' | 'bubble' | 'doughnut' | 'pie' | 'polarArea' | 
 export class AppChart extends LitElement {
   @property({ type: String })
   chartId: string | undefined = undefined;
-  
+
   @property({ type: String })
   chartType: ChartType = 'line';
-  
+
   @property({ type: Object })
   labels = [];
 
@@ -55,7 +56,6 @@ export class AppChart extends LitElement {
 
   protected firstUpdated(): void {
     const ctx = this.renderRoot.querySelector(`#${this.chartId}`) as HTMLCanvasElement;
-    
     new Chart(ctx, {
       type: this.chartType,
       data: {

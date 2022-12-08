@@ -102,6 +102,7 @@ export class Card extends LitElement {
 
     .app-card {
       width: 100%;
+      min-width: 320px;
       position: relative;
     }
   `;
