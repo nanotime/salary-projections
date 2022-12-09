@@ -27,181 +27,191 @@ export function getData(): DataStruct {
   };
 }
 
+enum CompanyNames {
+  free = 'Freelance',
+  mok = 'Mokepon Industries',
+  mark = 'IAMarketers',
+  inv = 'Inversionify',
+  green = 'Green Makers',
+  ecorp = 'E corp',
+  dpl = 'Daily Planet'
+}
+
 people.set('Juanita', [
-  { year: 2018, company: 'Freelance', salary: 250 },
-  { year: 2019, company: 'Freelance', salary: 250 },
-  { year: 2020, company: 'Industrias Mokepon', salary: 850 },
-  { year: 2021, company: 'Industrias Mokepon', salary: 1050 },
-  { year: 2022, company: 'Industrias Mokepon', salary: 1250 },
-  { year: 2023, company: 'Industrias Mokepon', salary: 1250 },
+  { year: 2018, company: CompanyNames.free, salary: 250 },
+  { year: 2019, company: CompanyNames.free, salary: 250 },
+  { year: 2020, company: CompanyNames.mok, salary: 850 },
+  { year: 2021, company: CompanyNames.mok, salary: 1050 },
+  { year: 2022, company: CompanyNames.mok, salary: 1250 },
+  { year: 2023, company: CompanyNames.mok, salary: 1250 },
 ]);
 
 people.set('Alex', [
-  { year: 2018, company: 'Freelance', salary: 450 },
-  { year: 2019, company: 'Freelance', salary: 550 },
-  { year: 2020, company: 'Freelance', salary: 400 },
-  { year: 2021, company: 'Industrias Mokepon', salary: 1050 },
-  { year: 2022, company: 'Industrias Mokepon', salary: 1250 },
-  { year: 2023, company: 'Industrias Mokepon', salary: 1250 },
+  { year: 2018, company: CompanyNames.free, salary: 450 },
+  { year: 2019, company: CompanyNames.free, salary: 550 },
+  { year: 2020, company: CompanyNames.free, salary: 400 },
+  { year: 2021, company: CompanyNames.mok, salary: 1050 },
+  { year: 2022, company: CompanyNames.mok, salary: 1230 },
+  { year: 2023, company: CompanyNames.mok, salary: 1300 },
 ]);
 
 people.set('Nath', [
-  { year: 2018, company: 'Freelance', salary: 600 },
-  { year: 2019, company: 'Freelance', salary: 625 },
-  { year: 2020, company: 'Freelance', salary: 575 },
-  { year: 2021, company: 'MarketerosCOL', salary: 1000 },
-  { year: 2022, company: 'MarketerosCOL', salary: 1000 },
-  { year: 2023, company: 'MarketerosCOL', salary: 1100 },
+  { year: 2018, company: CompanyNames.free, salary: 600 },
+  { year: 2019, company: CompanyNames.free, salary: 625 },
+  { year: 2020, company: CompanyNames.free, salary: 575 },
+  { year: 2021, company: CompanyNames.mark, salary: 1000 },
+  { year: 2022, company: CompanyNames.mark, salary: 1000 },
+  { year: 2023, company: CompanyNames.mark, salary: 1100 },
 ]);
 
 people.set('Julia', [
-  { year: 2018, company: 'MarketerosCOL', salary: 1000 },
-  { year: 2019, company: 'MarketerosCOL', salary: 2000 },
-  { year: 2020, company: 'MarketerosCOL', salary: 2000 },
-  { year: 2021, company: 'MarketerosCOL', salary: 2000 },
-  { year: 2022, company: 'MarketerosCOL', salary: 2000 },
-  { year: 2023, company: 'MarketerosCOL', salary: 2000 },
+  { year: 2018, company: CompanyNames.mark, salary: 455 },
+  { year: 2019, company: CompanyNames.mark, salary: 800 },
+  { year: 2020, company: CompanyNames.mark, salary: 830 },
+  { year: 2021, company: CompanyNames.mark, salary: 1000 },
+  { year: 2022, company: CompanyNames.mark, salary: 1175 },
+  { year: 2023, company: CompanyNames.mark, salary: 1275 },
 ]);
 
 people.set('Jonatan', [
-  { year: 2019, company: 'MarketerosCOL', salary: 1000 },
-  { year: 2020, company: 'MarketerosCOL', salary: 1000 },
-  { year: 2021, company: 'MarketerosCOL', salary: 800 },
-  { year: 2022, company: 'MarketerosCOL', salary: 900 },
-  { year: 2023, company: 'MarketerosCOL', salary: 1000 },
+  { year: 2019, company: CompanyNames.mark, salary: 1000 },
+  { year: 2020, company: CompanyNames.mark, salary: 1000 },
+  { year: 2021, company: CompanyNames.mark, salary: 1100 },
+  { year: 2022, company: CompanyNames.mark, salary: 1200 },
+  { year: 2023, company: CompanyNames.mark, salary: 1290 },
 ]);
 
 people.set('Armando', [
-  { year: 2018, company: 'Freelance', salary: 750 },
-  { year: 2019, company: 'Freelance', salary: 750 },
-  { year: 2020, company: 'Freelance', salary: 750 },
-  { year: 2021, company: 'Freelance', salary: 850 },
-  { year: 2022, company: 'Freelance', salary: 850 },
-  { year: 2023, company: 'Freelance', salary: 850 },
+  { year: 2018, company: CompanyNames.inv, salary: 750 },
+  { year: 2019, company: CompanyNames.inv, salary: 980 },
+  { year: 2020, company: CompanyNames.inv, salary: 980 },
+  { year: 2021, company: CompanyNames.inv, salary: 1000 },
+  { year: 2022, company: CompanyNames.free, salary: 1200 },
+  { year: 2023, company: CompanyNames.free, salary: 1300 },
 ]);
 
 people.set('Dilan', [
-  { year: 2018, company: 'Freelance', salary: 500 },
-  { year: 2019, company: 'Freelance', salary: 500 },
-  { year: 2020, company: 'Freelance', salary: 600 },
-  { year: 2021, company: 'Mokepon', salary: 1100 },
-  { year: 2022, company: 'Mokepon', salary: 1100 },
-  { year: 2023, company: 'Mokepon', salary: 1100 },
+  { year: 2018, company: CompanyNames.free, salary: 800 },
+  { year: 2019, company: CompanyNames.free, salary: 1000 },
+  { year: 2020, company: CompanyNames.free, salary: 930 },
+  { year: 2021, company: CompanyNames.inv, salary: 1100 },
+  { year: 2022, company: CompanyNames.inv, salary: 1200 },
+  { year: 2023, company: CompanyNames.inv, salary: 1500 },
 ]);
 
 people.set('Zamir', [
-  { year: 2018, company: 'Freelance', salary: 400 },
-  { year: 2019, company: 'Freelance', salary: 500 },
-  { year: 2020, company: 'Freelance', salary: 500 },
-  { year: 2021, company: 'Mokepon', salary: 1100 },
-  { year: 2022, company: 'Mokepon', salary: 1100 },
-  { year: 2023, company: 'Mokepon', salary: 1200 },
+  { year: 2018, company: CompanyNames.free, salary: 400 },
+  { year: 2019, company: CompanyNames.free, salary: 500 },
+  { year: 2020, company: CompanyNames.free, salary: 570 },
+  { year: 2021, company: CompanyNames.mok, salary: 1100 },
+  { year: 2022, company: CompanyNames.mok, salary: 1100 },
+  { year: 2023, company: CompanyNames.mok, salary: 1200 },
 ]);
 
 people.set('Daniela', [
-  { year: 2018, company: 'Freelance', salary: 500 },
-  { year: 2019, company: 'Freelance', salary: 500 },
-  { year: 2020, company: 'Freelance', salary: 500 },
-  { year: 2021, company: 'Freelance', salary: 550 },
-  { year: 2022, company: 'Freelance', salary: 550 },
-  { year: 2023, company: 'MarketerosCOL', salary: 850 },
+  { year: 2018, company: CompanyNames.free, salary: 500 },
+  { year: 2019, company: CompanyNames.free, salary: 700 },
+  { year: 2020, company: CompanyNames.free, salary: 630 },
+  { year: 2021, company: CompanyNames.free, salary: 950 },
+  { year: 2022, company: CompanyNames.free, salary: 1200 },
+  { year: 2023, company: CompanyNames.mark, salary: 1250 },
 ]);
 
 people.set('Daniel', [
-  { year: 2020, company: 'Freelance', salary: 150 },
-  { year: 2021, company: 'Freelance', salary: 450 },
-  { year: 2022, company: 'Freelance', salary: 550 },
-  { year: 2023, company: 'Freelance', salary: 650 },
+  { year: 2020, company: CompanyNames.free, salary: 150 },
+  { year: 2021, company: CompanyNames.free, salary: 450 },
+  { year: 2022, company: CompanyNames.free, salary: 550 },
+  { year: 2023, company: CompanyNames.free, salary: 650 },
 ]);
 
 people.set('Rigoberto', [
-  { year: 2018, company: 'MarketerosCOL', salary: 700 },
-  { year: 2019, company: 'MarketerosCOL', salary: 700 },
-  { year: 2020, company: 'MarketerosCOL', salary: 700 },
-  { year: 2021, company: 'MarketerosCOL', salary: 750 },
-  { year: 2022, company: 'MarketerosCOL', salary: 750 },
-  { year: 2023, company: 'MarketerosCOL', salary: 750 },
+  { year: 2018, company: CompanyNames.green, salary: 700 },
+  { year: 2019, company: CompanyNames.green, salary: 880 },
+  { year: 2020, company: CompanyNames.green, salary: 830 },
+  { year: 2021, company: CompanyNames.mark, salary: 1000 },
+  { year: 2022, company: CompanyNames.mark, salary: 1060 },
+  { year: 2023, company: CompanyNames.mark, salary: 1100 },
 ]);
 
 people.set('Alicia', [
-  { year: 2018, company: 'Inversionify', salary: 300 },
-  { year: 2019, company: 'Inversionify', salary: 1700 },
-  { year: 2020, company: 'Inversionify', salary: 2700 },
-  { year: 2021, company: 'Inversionify', salary: 3750 },
-  { year: 2022, company: 'Freelance', salary: 1550 },
-  { year: 2023, company: 'Freelance', salary: 350 },
+  { year: 2018, company: CompanyNames.inv, salary: 1500 },
+  { year: 2019, company: CompanyNames.inv, salary: 1700 },
+  { year: 2020, company: CompanyNames.inv, salary: 2700 },
+  { year: 2021, company: CompanyNames.inv, salary: 3750 },
+  { year: 2022, company: CompanyNames.free, salary: 3845 },
+  { year: 2023, company: CompanyNames.free, salary: 3900 },
 ]);
 
 people.set('Teodoro', [
-  { year: 2018, company: 'Freelance', salary: 600 },
-  { year: 2019, company: 'Freelance', salary: 700 },
-  { year: 2020, company: 'Inversionify', salary: 1700 },
-  { year: 2021, company: 'Inversionify', salary: 1750 },
-  { year: 2022, company: 'Freelance', salary: 800 },
-  { year: 2023, company: 'Freelance', salary: 850 },
+  { year: 2018, company: CompanyNames.free, salary: 1200 },
+  { year: 2019, company: CompanyNames.free, salary: 1400 },
+  { year: 2020, company: CompanyNames.inv, salary: 1700 },
+  { year: 2021, company: CompanyNames.inv, salary: 1750 },
+  { year: 2022, company: CompanyNames.green, salary: 2000 },
+  { year: 2023, company: CompanyNames.green, salary: 2300 },
 ]);
 
 people.set('Bruce', [
-  { year: 2018, company: 'Wayne Enterprises', salary: 4600 },
-  { year: 2019, company: 'Wayne Enterprises', salary: 4700 },
-  { year: 2020, company: 'Wayne Enterprises', salary: 3700 },
-  { year: 2021, company: 'Wayne Enterprises', salary: 4150 },
-  { year: 2022, company: 'Wayne Enterprises', salary: 4400 },
-  { year: 2023, company: 'Wayne Enterprises', salary: 3850 },
+  { year: 2018, company: CompanyNames.ecorp, salary: 4600 },
+  { year: 2019, company: CompanyNames.ecorp, salary: 4700 },
+  { year: 2020, company: CompanyNames.ecorp, salary: 4500 },
+  { year: 2021, company: CompanyNames.ecorp, salary: 4850 },
+  { year: 2022, company: CompanyNames.dpl, salary: 5000 },
+  { year: 2023, company: CompanyNames.dpl, salary: 5200 },
 ]);
 
 people.set('Alfred', [
-  { year: 2018, company: 'Wayne Enterprises', salary: 2000 },
-  { year: 2019, company: 'Wayne Enterprises', salary: 2000 },
-  { year: 2020, company: 'Wayne Enterprises', salary: 1500 },
-  { year: 2021, company: 'Wayne Enterprises', salary: 1500 },
-  { year: 2022, company: 'Wayne Enterprises', salary: 2000 },
-  { year: 2023, company: 'Wayne Enterprises', salary: 1500 },
+  { year: 2018, company: CompanyNames.ecorp, salary: 2000 },
+  { year: 2019, company: CompanyNames.ecorp, salary: 2000 },
+  { year: 2020, company: CompanyNames.ecorp, salary: 1800 },
+  { year: 2021, company: CompanyNames.dpl, salary: 2200 },
+  { year: 2022, company: CompanyNames.dpl, salary: 2230 },
+  { year: 2023, company: CompanyNames.ecorp, salary: 2800 },
 ]);
 
-people.set('Clark Kent', [
-  { year: 2018, company: 'Daily Planet', salary: 1000 },
-  { year: 2019, company: 'Daily Planet', salary: 1500 },
-  { year: 2020, company: 'Daily Planet', salary: 1000 },
-  { year: 2021, company: 'Daily Planet', salary: 1500 },
-  { year: 2022, company: 'Daily Planet', salary: 2000 },
-  { year: 2023, company: 'Daily Planet', salary: 1500 },
+people.set('Clark', [
+  { year: 2018, company: CompanyNames.inv, salary: 1000 },
+  { year: 2019, company: CompanyNames.inv, salary: 1500 },
+  { year: 2020, company: CompanyNames.green, salary: 1800 },
+  { year: 2021, company: CompanyNames.ecorp, salary: 2235 },
+  { year: 2022, company: CompanyNames.dpl, salary: 2300 },
+  { year: 2023, company: CompanyNames.dpl, salary: 2330 },
 ]);
 
-people.set('Lois Lane', [
-  { year: 2018, company: 'Daily Planet', salary: 2000 },
-  { year: 2019, company: 'Daily Planet', salary: 2500 },
-  { year: 2020, company: 'Daily Planet', salary: 2000 },
-  { year: 2021, company: 'Daily Planet', salary: 2500 },
-  { year: 2022, company: 'Daily Planet', salary: 2500 },
-  { year: 2023, company: 'Daily Planet', salary: 2500 },
+people.set('Lois Gartner', [
+  { year: 2018, company: CompanyNames.green, salary: 2000 },
+  { year: 2019, company: CompanyNames.green, salary: 2500 },
+  { year: 2020, company: CompanyNames.green, salary: 2200 },
+  { year: 2021, company: CompanyNames.green, salary: 2500 },
+  { year: 2022, company: CompanyNames.green, salary: 2577 },
+  { year: 2023, company: CompanyNames.green, salary: 2642 },
 ]);
 
-people.set('Jimmy Olsen', [
-  { year: 2018, company: 'Daily Planet', salary: 1500 },
-  { year: 2019, company: 'Daily Planet', salary: 2000 },
-  { year: 2020, company: 'Daily Planet', salary: 2000 },
-  { year: 2021, company: 'Daily Planet', salary: 2500 },
-  { year: 2022, company: 'Daily Planet', salary: 2500 },
-  { year: 2023, company: 'Daily Planet', salary: 1500 },
+people.set('Jim Kent', [
+  { year: 2018, company: CompanyNames.green, salary: 1500 },
+  { year: 2019, company: CompanyNames.green, salary: 2000 },
+  { year: 2020, company: CompanyNames.green, salary: 2000 },
+  { year: 2021, company: CompanyNames.ecorp, salary: 2500 },
+  { year: 2022, company: CompanyNames.ecorp, salary: 2500 },
+  { year: 2023, company: CompanyNames.ecorp, salary: 3500 },
 ]);
 
 people.set('Perry White', [
-  { year: 2018, company: 'Daily Planet', salary: 3500 },
-  { year: 2019, company: 'Daily Planet', salary: 3700 },
-  { year: 2020, company: 'Daily Planet', salary: 3800 },
-  { year: 2021, company: 'Daily Planet', salary: 4000 },
-  { year: 2022, company: 'Daily Planet', salary: 4050 },
-  { year: 2023, company: 'Daily Planet', salary: 4050 },
+  { year: 2018, company: CompanyNames.free, salary: 3500 },
+  { year: 2019, company: CompanyNames.free, salary: 3700 },
+  { year: 2020, company: CompanyNames.free, salary: 2700 },
+  { year: 2021, company: CompanyNames.ecorp, salary: 4000 },
+  { year: 2022, company: CompanyNames.ecorp, salary: 4050 },
+  { year: 2023, company: CompanyNames.ecorp, salary: 4050 },
 ]);
 
-people.set('Lex Luthor', [
-  { year: 2018, company: 'LexCorp', salary: 5000 },
-  { year: 2019, company: 'LexCorp', salary: 5300 },
-  { year: 2020, company: 'LexCorp', salary: 4000 },
-  { year: 2021, company: 'LexCorp', salary: 3000 },
-  { year: 2022, company: 'LexCorp', salary: 3500 },
-  { year: 2023, company: 'LexCorp', salary: 3050 },
+people.set('Ryan Brath', [
+  { year: 2018, company: CompanyNames.ecorp, salary: 5000 },
+  { year: 2019, company: CompanyNames.ecorp, salary: 5300 },
+  { year: 2020, company: CompanyNames.ecorp, salary: 4800 },
+  { year: 2021, company: CompanyNames.dpl, salary: 4900 },
+  { year: 2022, company: CompanyNames.ecorp, salary: 5500 },
+  { year: 2023, company: CompanyNames.dpl, salary: 5800 },
 ]);
 
 function formatCompanyData(): Map<string, CompanyData> {
