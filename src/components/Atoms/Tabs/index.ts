@@ -50,26 +50,27 @@ export class AppTabs extends LitElement {
   static styles?: CSSResultGroup | undefined = css`
     .tabs {
       display: flex;
-      gap: 4px;
+      gap: var(--size-sm);
       justify-items: start;
-      margin-bottom: 4px;
+      margin-bottom: var(--size-sm);
       width: 100%;
     }
 
     .tab {
-      background-color: #fff;
-      border: 1px solid #000;
+      background-color: var(--white);
+      border: 1px solid var(--black);
       cursor: pointer;
       padding: 12px;
     }
 
     .tab:active, .tab:hover {
-      background-color: #ddd;
+      background-color: var(--soft-black);
+      color: var(--soft-grey);
     }
 
     .active {
-      background-color: #000;
-      color: #fff;
+      background-color: var(--black);
+      color: var(--white);
     }
   `
 }

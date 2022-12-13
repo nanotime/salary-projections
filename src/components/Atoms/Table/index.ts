@@ -1,4 +1,4 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, CSSResultGroup, css } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { map } from 'lit/directives/map.js';
@@ -16,6 +16,37 @@ export class AppTable extends LitElement {
 
   @property({ type: Object, attribute: 'data' })
   data: dataProps | undefined = undefined;
+
+  render() {
+    if (!this.data) return html`<div>Loading ....</div>`;
+
+    return html`
+      <table id=${this.id || sum(this.data)}>
+        ${this._buildHead()}
+        ${this._buildBody()}
+      </table>
+    `
+  }
+
+  static styles?: CSSResultGroup | undefined = css`
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    tr {
+      border-top: 1px dashed;
+      border-bottom: 1px dashed;
+    }
+
+    tr:nth-child(1) {
+      border-top: none;
+    }
+    
+    tr:nth-child(1) th {
+      text-align: left;
+    }
+  `;
 
   private _buildHead() {
     const part = this.data?.heads || [];
@@ -42,7 +73,7 @@ export class AppTable extends LitElement {
       item => sum(item),
       item => html`
         <tr>
-          ${item.headingTd ? html`<td>${item.headingTd}</td>` : ''}
+          ${item.headingTd ? html`<td><strong>${item.headingTd}</strong></td>` : ''}
           ${map(item.elements, itemMapper)}
         </tr>
       `
@@ -51,16 +82,6 @@ export class AppTable extends LitElement {
       <tbody>
         ${repeater}
       </tbody>
-    `
-  }
-
-  render() {
-    if (!this.data) return html`<div>Loading ....</div>`;
-    return html`
-      <table id=${this.id || sum(this.data)}>
-        ${this._buildHead()}
-        ${this._buildBody()}
-      </table>
     `
   }
 }

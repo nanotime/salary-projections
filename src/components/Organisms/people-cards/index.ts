@@ -3,7 +3,7 @@ import { customElement, state } from 'lit/decorators.js';
 import { ChartData } from 'chart.js';
 import { repeat } from 'lit/directives/repeat.js';
 import sum from 'hash-sum';
-import { getData } from '../../../utils';
+import { getData, lineChartOptions, generalChartOptions } from '../../../utils';
 
 @customElement('people-cards')
 export class PeopleCards extends LitElement {
@@ -49,16 +49,14 @@ export class PeopleCards extends LitElement {
     const datasets: ChartData<'line'> = {
       datasets: [
         {
-          label: 'Salarys',
+          label: 'Salary',
           data: chartItems || [],
+          ...lineChartOptions,
         },
       ],
     };
     const chartOptions = JSON.stringify({
-      scales: {
-        x: { grid: { display: false } },
-        y: { grid: { display: false } },
-      },
+      ...generalChartOptions,
     });
 
     return html`

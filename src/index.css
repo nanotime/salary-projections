@@ -1,3 +1,16 @@
+:root {
+  --size-sm: 4px;
+  --size-md: 8px;
+  --size-lg: 12px;
+
+  --white: #fff;
+  --black: #000;
+  --soft-black: #3C4048;
+  --teal: #00ABB3;
+  --grey: #B2B2B2;
+  --soft-grey: #EAEAEA;
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -52,5 +65,8 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 body {
-  padding: 2px;
+  padding: var(--size-md);
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Mono', monospace;
+  color: var(--soft-black)
 }

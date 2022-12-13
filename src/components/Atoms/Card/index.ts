@@ -1,5 +1,6 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 
 /**
  * Creates a simple html card to contain elements
@@ -12,98 +13,79 @@ export class Card extends LitElement {
   @property({ type: String })
   title = 'Card Title';
 
-  @property({ type: Boolean })
-  open = false;
+  @property({ type: String })
+  justify: 'between' | 'end' | 'center' = 'between';
 
   render() {
+    const justifyClass = classMap({
+      'justify-between': this.justify === 'between',
+      'justify-end': this.justify === 'end',
+      'justify-center': this.justify === 'center',
+    });
+
     return html`
       <article class="app-card">
         <header class="app-card__header">
-          <slot name="filters"></slot>
           <h2>${this.title}</h2>
         </header>
 
         <div class="app-card__content">
-          <div class="slot">
+          <div class="slot ${justifyClass}">
             <slot></slot>
           </div>
-        </div>
-
-        <div class="chevron-container">
-          <button @click=${this._setOpen}>
-            <span  class="chevron ${this.open ? '' : 'down'}"></span>
-          </button>
         </div>
       </article>
     `;
   }
 
-  private _setOpen() {
-    this.open = !this.open;
-    this.renderRoot
-      .querySelector('.app-card__content')
-      ?.classList.toggle('invisible');
-    const evt = new CustomEvent('toggleChevron', { detail: this.open });
-    this.dispatchEvent(evt);
-  }
-
   static styles = css`
     :host {
       border: 1px solid black;
+      border-radius: var(--size-sm);
+      display: block;
+      height: 450px;
+      max-height: 450px;
       min-height: 400px;
-      max-height: 500px;
-      display: flex;
-      padding: 8px;
-      scroll-snap-align: start;
-    }
-
-    .invisible {
-      display: none;
-    }
-
-    .chevron {
-      border-style: solid;
-      border-width: 0.25em 0.25em 0 0;
-      content: '';
-      display: inline-block;
-      height: 0.45em;
-      left: 0.15em;
-      position: relative;
-      top: 0.15em;
-      transform: rotate(-45deg);
-      vertical-align: top;
-      width: 0.45em;
-      cursor: pointer;
-    }
-
-    .chevron.down {
-      top: 0;
-      transform: rotate(135deg);
-    }
-
-    .chevron-container {
-      display: flex;
-      justify-content: center;
-    }
-
-    .chevron-container button {
-      padding: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: none;
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 10px;
-      margin: 0 auto;
+      padding: 0 var(--size-md);
+      /* scroll-snap-align: start; */
+      margin-bottom: 2px;
     }
 
     .app-card {
-      width: 100%;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      height: 100%;
+      justify-content: space-between;
       min-width: 320px;
-      position: relative;
+      width: 100%;
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    .app-card__content {
+      height: 90%;
+    }
+
+    .slot {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 100%;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .justify-end {
+      justify-content: end;
+    }
+
+    .justify-center {
+      justify-content: center;
     }
   `;
 }

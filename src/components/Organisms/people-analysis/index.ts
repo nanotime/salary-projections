@@ -1,9 +1,11 @@
 import { LitElement, html, CSSResultGroup, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { getData, tops } from '../../../utils';
+import { getData, tops, generalChartOptions } from '../../../utils';
 import { ChartData } from 'chart.js';
 import sum from 'hash-sum';
 import { repeat } from 'lit/directives/repeat.js';
+
+// TODO: remove options since is a global config
 
 @customElement('app-people-analysis')
 export class PeopleAnalysis extends LitElement {
@@ -23,7 +25,7 @@ export class PeopleAnalysis extends LitElement {
       card => sum(card),
       card =>
         html`
-          <app-card title=${card.title}>
+          <app-card title=${card.title} justify="center">
             ${this._buildbarChart(card.key, card.dataMapTarget)}
           </app-card>
         `
@@ -44,10 +46,7 @@ export class PeopleAnalysis extends LitElement {
       ],
     };
     const chartOptions = JSON.stringify({
-      scales: {
-        x: { grid: { display: false } },
-        y: { grid: { display: false } },
-      },
+      ...generalChartOptions
     });
 
     if (!target) return html`<div>No target</div>`;

@@ -37,25 +37,26 @@ export class DataCards extends LitElement {
     .container {
       width: 100%;
       height: 500px;
+      margin-bottom: var(--size-lg);
     }
 
     .cards {
       display: flex;
-      gap: 12px;
+      gap: var(--size-lg);
       width: 100%;
       overflow-x: scroll;
       scrollbar-width: thin;
-      scroll-snap-type: x proximity;
+      /* scroll-snap-type: x proximity; */
     }
 
     .cards::-webkit-scrollbar {
-      width: 5px;
-      height: 5px;
-      background-color: #aaa;
+      width: var(--size-sm);
+      height: var(--size-sm);
+      background-color: var(--grey);
     }
 
     .cards::-webkit-scrollbar-thumb {
-      background-color: #000;
+      background-color: var(--black);
       width: 8px;
     }
   `;

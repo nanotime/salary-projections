@@ -68,9 +68,7 @@ export class AppChart extends LitElement {
 
   protected render(): unknown {
     return html`
-      <div>
-        <canvas id="${this.chartId}"></canvas>
-      </div>
+      <canvas id="${this.chartId}"></canvas>
     `
   }
 }

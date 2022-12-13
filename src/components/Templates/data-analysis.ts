@@ -7,6 +7,7 @@ export class DataAnalysis extends LitElement {
     return html`
       <div class="app-data-analysis">
         <app-people-analysis></app-people-analysis>
+        <app-companies-analysis></app-companies-analysis>
       </div>
     `
   }

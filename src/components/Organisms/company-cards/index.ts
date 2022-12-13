@@ -3,7 +3,13 @@ import { repeat } from 'lit/directives/repeat.js';
 import sum from 'hash-sum';
 import { ChartData } from 'chart.js';
 import { customElement, state } from 'lit/decorators.js';
-import { getData, CompanyData } from '../../../utils';
+import {
+  getData,
+  CompanyData,
+  lineChartOptions,
+  generalChartOptions,
+  Stringify,
+} from '../../../utils';
 
 @customElement('company-card')
 export class CompanyCards extends LitElement {
@@ -17,7 +23,7 @@ export class CompanyCards extends LitElement {
       company => html`
         <app-card title=${company[0]}>
           <app-table
-            data=${JSON.stringify(this._setTableFormat(company[0]))}
+            data=${Stringify(this._setTableFormat(company[0]))}
           ></app-table>
           ${this._buildChart(company[0])}
         </app-card>
@@ -33,37 +39,35 @@ export class CompanyCards extends LitElement {
     }));
 
     return {
-      heads: [],
+      heads: ['Year'],
       body: data,
     };
   }
 
   private _buildChart(target: string) {
     const data = this._companies.get(target) as CompanyData;
-    const labels = JSON.stringify(Object.keys(data));
-    const chartItems = Object
-      .values(data)
-      .map(cData => cData.salarys.reduce((prev, curr) => prev + curr, 0))
+    const labels = Stringify(Object.keys(data));
+    const chartItems = Object.values(data).map(cData =>
+      cData.salarys.reduce((prev, curr) => prev + curr, 0)
+    );
     const datasets: ChartData<'line'> = {
       datasets: [
         {
-          label: 'Salarys',
+          label: 'Salary',
           data: chartItems,
+          ...lineChartOptions,
         },
       ],
     };
-    const chartOptions = JSON.stringify({
-      scales: {
-        x: { grid: { display: false } },
-        y: { grid: { display: false } },
-      },
+    const chartOptions = Stringify({
+      ...generalChartOptions,
     });
 
     return html`
       <app-chart
         chartType="line"
         chartId=${target.split(' ').join('-').toLowerCase()}
-        data=${JSON.stringify(datasets.datasets)}
+        data=${Stringify(datasets.datasets)}
         labels=${labels}
         options=${chartOptions}
       ></app-chart>

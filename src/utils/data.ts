@@ -1,7 +1,7 @@
 export const dataKeys = { company: 'company_data', persons: 'persons_data' };
 
 export type CompanyData = {
-  [key: number]: {
+  [key: string]: {
     salarys: number[];
     workers: string[];
   };
