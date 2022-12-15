@@ -1,15 +1,35 @@
 import { LitElement, html, css, CSSResultGroup } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, state } from 'lit/decorators.js';
 
 @customElement('data-analysis')
 export class DataAnalysis extends LitElement {
-  render() {
+  @state()
+  _selectedTab = 'people-analysis';
+
+  protected render() {
+    const tabs = [
+      { title: 'People', id: 'people-analysis' },
+      { title: 'Companies', id: 'companies-analysis' },
+    ];
+
+    const peopleAnalysis = html`<app-people-analysis></app-people-analysis>`;
+    const companyAnalysis = html`<app-companies-analysis></app-companies-analysis>`;
+
     return html`
-      <div class="app-data-analysis">
-        <app-people-analysis></app-people-analysis>
-        <app-companies-analysis></app-companies-analysis>
-      </div>
-    `
+      <section class="app-data-analysis">
+        <app-tabs
+          selected=${this._selectedTab}
+          tabs=${JSON.stringify(tabs)}
+          @tabclick=${this._setSelectedTab}
+        ></app-tabs>
+        ${this._selectedTab === 'people-analysis' ? peopleAnalysis : null}
+        ${this._selectedTab === 'companies-analysis' ? companyAnalysis : null}
+      </section>
+    `;
+  }
+
+  private _setSelectedTab(e: CustomEvent) {
+    this._selectedTab = e.detail.id;
   }
 
   static styles?: CSSResultGroup | undefined = css`
