@@ -22,8 +22,6 @@ export class CompaniesAnalysis extends LitElement {
     const projections = this._companiesProjection();
     const options = Stringify(generalChartOptions);
 
-    console.log(growByYear);
-
     return html`<section class="companies-data-analysis">
       <app-card title="Promedy of salarys by year" justify="center">
         <app-chart
@@ -32,7 +30,7 @@ export class CompaniesAnalysis extends LitElement {
           data=${Stringify(promedySalary.datasets)}
           options=${options}
         ></app-chart>
-      </app-card>  
+      </app-card>
 
       <app-card title="Percentual grow of salarys by year" justify="center">
         <app-chart
