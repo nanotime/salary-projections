@@ -1,7 +1,7 @@
 import { Job } from './data';
 import { projectionByPerson, medianByPerson } from './index';
 
-interface Top {
+export interface Top {
   name: string;
   salary: number;
   projection: number;

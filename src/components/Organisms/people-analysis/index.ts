@@ -1,65 +1,120 @@
 import { LitElement, html, CSSResultGroup, css } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
-import { getData, tops, generalChartOptions } from '../../../utils';
+import {
+  getData,
+  tops,
+  Top,
+  generalChartOptions,
+  Stringify,
+} from '../../../utils';
 import { ChartData } from 'chart.js';
-import sum from 'hash-sum';
-import { repeat } from 'lit/directives/repeat.js';
 
-// TODO: remove options since is a global config
+// interface Card {
+//   title: string;
+//   key: string;
+//   dataMapTarget: string;
+//   opts?: any;
+// }
+
+const buildDataset = (data: Top[], dataMapTarget: string): ChartData<'bar'> => {
+  const items = data.map(item => item[dataMapTarget]).sort((a, b) => b - a);
+  const datasets: ChartData<'bar'> = {
+    datasets: [
+      {
+        label: 'Name',
+        data: items,
+      },
+    ],
+  };
+
+  return datasets;
+};
 
 @customElement('app-people-analysis')
 export class PeopleAnalysis extends LitElement {
   @state()
-  _cards: Array<{ title: string; key: string; dataMapTarget: string }> = [
-    { title: 'Top 10% of earnings', key: 'top10percent', dataMapTarget: 'salary' },
-    { title: 'Top 10 median salarys', key: 'top10Salarys', dataMapTarget: 'salary' },
-    { title: 'Top 10 projections', key: 'top10Projections', dataMapTarget: 'projection' },
-  ];
-
-  @state()
   _topsData = tops(getData().persons_data);
 
   protected render(): unknown {
-    const repeater = repeat(
-      this._cards,
-      card => sum(card),
-      card =>
-        html`
-          <app-card title=${card.title} justify="center">
-            ${this._buildbarChart(card.key, card.dataMapTarget)}
-          </app-card>
-        `
-    );
-    return html`<section class="people-data-analysis">${repeater}</section> `;
+    const baseOptions = generalChartOptions;
+    const top10PercentData = {
+      data: this._buildTop10percent(),
+      options: {
+        ...baseOptions,
+        backgroundColor: ['#00ABB3', '#97DECE'],
+      },
+    };
+    const top10SalaryData = {
+      data: this._buildTop10Salarys(),
+      options: {
+        ...baseOptions,
+        backgroundColor: ['#3C4048'],
+      },
+    };
+    const top10ProjectionsData = {
+      data: this._buildTop10Projections(),
+      options: {
+        ...baseOptions,
+        backgroundColor: ['#3C4048'],
+      }
+    };
+
+    return html`<section class="people-data-analysis">
+      <app-card title="Top 10% of earnings" justify="center">
+        <app-chart
+          chartType="bar"
+          chartId="top10percent"
+          labels=${Stringify(top10PercentData.data.labels)}
+          data=${Stringify(top10PercentData.data.datasets.datasets)}
+          options=${Stringify(top10PercentData.options)}
+        ></app-chart>
+      </app-card>
+      <app-card title="Top 10 median salarys" justify="center">
+        <app-chart
+          chartType="bar"
+          chartId="top10Salarys"
+          labels=${Stringify(top10SalaryData.data.labels)}
+          data=${Stringify(top10SalaryData.data.datasets.datasets)}
+          options=${Stringify(top10SalaryData.options)}
+        ></app-chart>
+      </app-card>
+      <app-card title="Top 10 projections" justify="center">
+        <app-chart
+          chartType="bar"
+          chartId="top10Projections"
+          labels=${Stringify(top10ProjectionsData.data.labels)}
+          data=${Stringify(top10ProjectionsData.data.datasets.datasets)}
+          options=${Stringify(top10ProjectionsData.options)}
+        ></app-chart>
+      </app-card>
+    </section>`;
   }
 
-  private _buildbarChart(target: string, dataMapTarget: string): unknown {
-    const data = this._topsData[target] || [];
-    const labels = JSON.stringify(data.map(item => item.name));
-    const chartItems = data.map(item => item[dataMapTarget]).sort((a,b) => b - a);
-    const datasets: ChartData<'bar'> = {
-      datasets: [
-        {
-          label: 'Persons',
-          data: chartItems || [],
-        },
-      ],
+  private _buildTop10percent() {
+    const data = this._topsData.top10percent;
+    const labels = data.map(item => item.name);
+    return {
+      labels,
+      datasets: buildDataset(data, 'salary'),
     };
-    const chartOptions = JSON.stringify({
-      ...generalChartOptions
-    });
+  }
 
-    if (!target) return html`<div>No target</div>`;
+  private _buildTop10Salarys() {
+    const data = this._topsData.top10Salarys;
+    const labels = data.map(item => item.name);
+    return {
+      labels,
+      datasets: buildDataset(data, 'salary'),
+    };
+  }
 
-    return html`
-      <app-chart
-        chartType="bar"
-        chartId=${target}
-        data=${JSON.stringify(datasets.datasets)}
-        labels=${labels}
-        options=${chartOptions}
-      ></app-chart>
-    `;
+  private _buildTop10Projections() {
+    const data = this._topsData.top10Projections;
+    const labels = data.map(item => item.name);
+    return {
+      labels,
+      datasets: buildDataset(data, 'projection'),
+    };
   }
 
   static styles?: CSSResultGroup | undefined = css`
@@ -69,7 +124,7 @@ export class PeopleAnalysis extends LitElement {
       grid-template-columns: repeat(3, 1fr);
       gap: 4px;
     }
-  `
+  `;
 }
 
 declare global {
