@@ -9,13 +9,6 @@ import {
 } from '../../../utils';
 import { ChartData } from 'chart.js';
 
-// interface Card {
-//   title: string;
-//   key: string;
-//   dataMapTarget: string;
-//   opts?: any;
-// }
-
 const buildDataset = (data: Top[], dataMapTarget: string): ChartData<'bar'> => {
   const items = data.map(item => item[dataMapTarget]).sort((a, b) => b - a);
   const datasets: ChartData<'bar'> = {
