@@ -12,12 +12,13 @@ export { projectionByCompany } from './projectionByCompany';
 
 export const Stringify = (datum: any) => JSON.stringify(datum);
 
-export const colorPalette = {
-  white: '#fff',
+export const chartColors = {
   black: '#000',
-  'soft-black': '#3C4048',
   teal: '#00ABB3',
-  'light-green': '#97DECE',
-  grey: '#B2B2B2',
-  'soft-grey': '#EAEAEA',  
+  'soft-black': '#3C4048',
+  'light-teal': '#97DECE',
+  'soft-purple': '#85586F',
+  'light-yellow': '#F3ECB0',
+  'dark-teal': '#678983',
+  'pink': '#FF8E9E',
 }

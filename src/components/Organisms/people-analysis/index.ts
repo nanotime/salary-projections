@@ -6,7 +6,7 @@ import {
   Top,
   generalChartOptions,
   Stringify,
-  colorPalette
+  chartColors
 } from '../../../utils';
 import { ChartData } from 'chart.js';
 
@@ -35,21 +35,21 @@ export class PeopleAnalysis extends LitElement {
       data: this._buildTop10percent(),
       options: {
         ...baseOptions,
-        backgroundColor: [colorPalette.teal, colorPalette['light-green']],
+        backgroundColor: [chartColors.teal, chartColors['light-teal']],
       },
     };
     const top10SalaryData = {
       data: this._buildTop10Salarys(),
       options: {
         ...baseOptions,
-        backgroundColor: [colorPalette['soft-black']],
+        backgroundColor: [chartColors['soft-black']],
       },
     };
     const top10ProjectionsData = {
       data: this._buildTop10Projections(),
       options: {
         ...baseOptions,
-        backgroundColor: [colorPalette['soft-black']],
+        backgroundColor: [chartColors['soft-black']],
       }
     };
 
