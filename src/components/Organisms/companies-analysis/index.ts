@@ -41,7 +41,6 @@ export class CompaniesAnalysis extends LitElement {
           chartId="salary-promedy-year"
           labels=${Stringify(promedySalary.data.labels)}
           data=${Stringify(promedySalary.data.datasets)}
-          options=${Stringify(promedySalary.options)}
         ></app-chart>
       </app-card>
 
