@@ -9,6 +9,7 @@ import {
   CompanyData,
   Stringify,
   generalChartOptions,
+  chartColors
 } from '../../../utils';
 
 @customElement('app-companies-analysis')
@@ -17,18 +18,30 @@ export class CompaniesAnalysis extends LitElement {
   _companies = getData().company_data;
 
   protected render(): unknown {
-    const promedySalary = this._salaryPromedyByYear();
-    const growByYear = this._percentGrowByYear();
-    const projections = this._companiesProjection();
-    const options = Stringify(generalChartOptions);
+    const promedySalary = {
+      data: this._salaryPromedyByYear(),
+    }
+    const growByYear = {
+      data: this._percentGrowByYear(),
+      options: {
+        backgroundColor: [chartColors['soft-black']]
+      }
+    }
+    const projections = {
+      data: this._companiesProjection(),
+      options: {
+        ...generalChartOptions,
+        backgroundColor: [chartColors['soft-black']]
+      }
+    }
 
     return html`<section class="companies-data-analysis">
       <app-card title="Promedy of salarys by year" justify="center">
         <app-chart
           chartId="salary-promedy-year"
-          labels=${Stringify(promedySalary.labels)}
-          data=${Stringify(promedySalary.datasets)}
-          options=${options}
+          labels=${Stringify(promedySalary.data.labels)}
+          data=${Stringify(promedySalary.data.datasets)}
+          options=${Stringify(promedySalary.options)}
         ></app-chart>
       </app-card>
 
@@ -36,8 +49,9 @@ export class CompaniesAnalysis extends LitElement {
         <app-chart
           chartId="percent-grow-year"
           chartType="bar"
-          labels=${Stringify(growByYear.labels)}
-          data=${Stringify(growByYear.datasets)}
+          labels=${Stringify(growByYear.data.labels)}
+          data=${Stringify(growByYear.data.datasets)}
+          options=${Stringify(growByYear.options)}
         ></app-chart>
       </app-card>  
 
@@ -45,9 +59,9 @@ export class CompaniesAnalysis extends LitElement {
         <app-chart
           chartId="companies-projections"
           chartType="bar"
-          labels=${Stringify(projections.labels)}
-          data=${Stringify(projections.datasets)}
-          options=${options}
+          labels=${Stringify(projections.data.labels)}
+          data=${Stringify(projections.data.datasets)}
+          options=${Stringify(projections.options)}
         ></app-chart>
       </app-card>  
     </section>`;
@@ -65,16 +79,19 @@ export class CompaniesAnalysis extends LitElement {
   private _salaryPromedyByYear() {
     const labels = ['2018', '2019', '2020', '2021', '2022', '2023'];
     const values = Array.from(this._companies.entries());
+    const colors = Object.values(chartColors);
 
     return {
       labels,
-      datasets: values.map(company => {
+      datasets: values.map((company, idx) => {
         const promedys = Object.values(company[1]).map(datum =>
           calcPromedy(datum.salarys)
         );
         return {
           label: company[0],
           data: promedys,
+          borderColor: colors[idx],
+          pointBackgroundColor: colors[idx],
         };
       }),
     };

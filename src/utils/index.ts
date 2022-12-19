@@ -11,3 +11,14 @@ export { projectionByPerson } from './projectionByPerson';
 export { projectionByCompany } from './projectionByCompany';
 
 export const Stringify = (datum: any) => JSON.stringify(datum);
+
+export const chartColors = {
+  black: '#000',
+  teal: '#00ABB3',
+  'soft-black': '#3C4048',
+  'light-teal': '#97DECE',
+  'soft-purple': '#85586F',
+  'light-yellow': '#F3ECB0',
+  'dark-teal': '#678983',
+  'pink': '#FF8E9E',
+}
